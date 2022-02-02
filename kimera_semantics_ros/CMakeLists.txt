@@ -3,6 +3,10 @@ project(kimera_semantics_ros)
 
 find_package(catkin_simple REQUIRED)
 
+# Set target C++ standard and required compiler features
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 catkin_simple()
 
 cs_add_library(${PROJECT_NAME}
@@ -22,6 +26,7 @@ cs_add_library(${PROJECT_NAME}
 cs_add_executable(kimera_semantics_node
   src/kimera_semantics_node.cpp
 )
+
 target_link_libraries(kimera_semantics_node ${PROJECT_NAME})
 
 cs_add_executable(kimera_semantics_rosbag
@@ -33,6 +38,9 @@ cs_add_executable(semantic_simulator_eval
   src/semantic_simulation_eval.cpp
 )
 target_link_libraries(semantic_simulator_eval ${PROJECT_NAME} ${PCL_LIBRARIES})
+
+find_package(opencv3_catkin REQUIRED)
+target_link_libraries(${PROJECT_NAME} ${opencv3_catkin_LIBRARIES})
 
 cs_install()
 

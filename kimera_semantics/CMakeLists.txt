@@ -3,6 +3,10 @@ project(kimera_semantics)
 
 find_package(catkin_simple REQUIRED)
 
+# Set target C++ standard and required compiler features
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 catkin_simple()
 
 cs_add_library(${PROJECT_NAME}
